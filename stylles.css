@@ -1,0 +1,20 @@
+/* color
+#393E41
+#D3D0CB
+#E7E5DF
+*/
+body {
+    background-color: #E7E5DF;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #393E41;
+}
+div {
+
+} 
+.title {
+    text-align: center;
+    background-color: #D3D0CB;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 800;
+}
