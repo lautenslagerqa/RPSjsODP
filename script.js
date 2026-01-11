@@ -1,11 +1,11 @@
 function getComputerChoice() {
-    let x = Math.random() * 3;
+    let x =  Math.floor(Math.random() * 3) + 1;
     switch (x) {
-        case x<=1:
+        case 1:
             return "rock";
-        case x<=2:
+        case 2:
             return "paper"; 
-        case x<=3:
+        case 3:
             return "scissors";
     }
 }
@@ -15,42 +15,63 @@ function getHumanChoice() {
 }
 let humanScore = 0;
 let computerScore = 0;
+let rBar = document.querySelector(".result");
 function playRound(hChoice, cChoice) {
     let h = hChoice.toLowerCase();
-    if (h == "rock" || h == "paper" || cChoice == "rock" || cChoice == "paper") {
-        if (h == "paper") {
-            console.log("You win! Paper beats Rock.");
+    console.log("result " + h + " " + cChoice);
+    if ((h == "rock" || h == "paper") && (cChoice == "rock" || cChoice == "paper")) {
+        if (h == "paper" && cChoice=="rock") {
+            rBar.textContent = "Result: You win! Paper beats Rock.";
             humanScore++;
-        } else {
-            console.log("You lose! Paper beats Rock.");
+        } else if (h=="rock" && cChoice=="paper") {
+            rBar.textContent = "Result: You lose! Paper beats Rock.";
             computerScore++;
+        } else {
+            rBar.textContent = "Result: Draw!"
         }
-    } else if (h == "scissors" || h == "paper" || cChoice == "scissors" || cChoice == "paper") {
-        if (h == "scissors") {
-            console.log("You win! Scissors beats Paper.");
+    } else if ((h == "scissors" || h == "paper") && (cChoice == "scissors" || cChoice == "paper")) {
+        if (h == "scissors" && cChoice == "paper") {
+            rBar.textContent = "Result: You win! Scissors beats Paper.";
             humanScore++;
-        } else {
-            console.log("You lose! Scissors beats Paper.");
+        } else if (h=="paper" && cChoice== "scissors") {
+            rBar.textContent = "Result: You lose! Scissors beats Paper.";
             computerScore++;
+        } else {
+            rBar.textContent = "Result: Draw!"
         }
     } else if (h == "scissors" || h == "rock" || cChoice == "scissors" || cChoice == "rock") {
-        if (h == "rock") {
-            console.log("You win! Rock beats Scissors.");
+        if (h == "rock" && cChoice== "scissors") {
+            rBar.textContent = "Result: You win! Rock beats Scissors.";
             humanScore++;
-        } else {
-            console.log("You lose! Rock beats Scissors.");
+        } else if (h == "scissors" && cChoice== "rock") {
+            rBar.textContent = "Result: You lose! Rock beats Scissors.";
             computerScore++;
+        } else {
+            rBar.textContent = "Result: Draw!"
         }
+    } else {
+        rBar.textContent = "Result: Draw!"
     }
+    let sBar = document.querySelector(".score");
+    sBar.textContent = "Score: You: " + humanScore + " Computer: " + computerScore;
 }
 
-
-function playGame() {
-    for (i=0; i<5; i++) {
-        let hs = getHumanChoice();
-        let cs = getComputerChoice();
-        playRound(hs, cs);
+let btn = document.querySelectorAll("button");
+let text = "";
+let clicked = false;
+btn.forEach((butn) => {
+    butn.addEventListener("click", () => {
+        clicked = true;
+        text = (butn.textContent).toLowerCase();
+        playGame();
+        console.log(text);
+        clicked = false;
+    });
+});
+function playGame() {   
+            let hs = text;
+            let cs = getComputerChoice();
+            playRound(hs, cs);
+            console.log(hs + " " + cs);
+        
     }
-
-}
-//playGame();
