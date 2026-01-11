@@ -18,7 +18,7 @@ let computerScore = 0;
 let rBar = document.querySelector(".result");
 function playRound(hChoice, cChoice) {
     let h = hChoice.toLowerCase();
-    console.log("result " + h + " " + cChoice);
+    //console.log("result " + h + " " + cChoice);
     if ((h == "rock" || h == "paper") && (cChoice == "rock" || cChoice == "paper")) {
         if (h == "paper" && cChoice=="rock") {
             rBar.textContent = "Result: You win! Paper beats Rock.";
@@ -64,7 +64,7 @@ btn.forEach((butn) => {
         clicked = true;
         text = (butn.textContent).toLowerCase();
         playGame();
-        console.log(text);
+        //console.log(text);
         clicked = false;
     });
 });
@@ -72,6 +72,6 @@ function playGame() {
             let hs = text;
             let cs = getComputerChoice();
             playRound(hs, cs);
-            console.log(hs + " " + cs);
+            //console.log(hs + " " + cs);
         
     }
